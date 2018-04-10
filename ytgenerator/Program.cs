@@ -23,22 +23,23 @@ namespace ytgenerator
 
         static private string GenerateIndentifier()
         {
-            string URI = "";
+            string id = "";
 
             for (int i = 0; i < 11; i++)
             {
                 int lowUp = rnd.Next(0, 2);
+
                 switch (lowUp)
                 {
                     case 0:
-                        URI += RandomCharOrNmb().ToLower();
+                        id += RandomCharOrNmb().ToLower();
                         break;
                     case 1:
-                        URI += RandomCharOrNmb();
+                        id += RandomCharOrNmb();
                         break;
                 }               
             }
-            return URI;
+            return id;
         }
 
         public static string GetTitle(string url)
@@ -67,7 +68,7 @@ namespace ytgenerator
                 File.WriteAllText(path, createText);
             }
 
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 100; i++)
             {
                 string urlTitle;
 
@@ -80,8 +81,8 @@ namespace ytgenerator
                     File.AppendAllText(path, appendText);
                 }
             }
-
-            Thread.CurrentThread.Abort();
+            Console.WriteLine(Thread.CurrentThread.Name + " Finished");
+            Thread.CurrentThread.Abort();            
         }
 
         static void Main(string[] args)
