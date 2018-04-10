@@ -43,7 +43,6 @@ namespace ytgenerator
             return URI;
         }
 
-
         public static string GetTitle(string url)
         {
             var api = $"http://youtube.com/get_video_info?video_id={GetArgs(url, "v", '?')}";
@@ -72,7 +71,7 @@ namespace ytgenerator
             }   
 
             for (int i = 0; i < 50000; i++)
-            {                
+            {   
                 string urlTitle;
 
                 URL = url + GenerateIndentifier();
@@ -80,13 +79,13 @@ namespace ytgenerator
 
                 Console.Write(i.ToString() + ",");
 
-                string appendText = i.ToString() + "\t-\t" + URL + "       Title:" + urlTitle + Environment.NewLine;
-                File.AppendAllText(path, appendText);
-                
+                if(urlTitle != null)
+                {
+                    string appendText = i.ToString() + "\t-\t" + URL + "       Title:" + urlTitle + Environment.NewLine;
+                    File.AppendAllText(path, appendText);
+                }  
             }
-
             Console.ReadKey();
         }
-
     }
 }
