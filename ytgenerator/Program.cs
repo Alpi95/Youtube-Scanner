@@ -73,9 +73,7 @@ namespace ytgenerator
 
                 URL = url + GenerateIndentifier();
                 urlTitle = GetTitle(url);
-
-                Console.Write(Thread.CurrentThread.Name);
-
+                
                 if (urlTitle != null)
                 {
                     string appendText = i.ToString() + "\t-\t" + URL + "\tTitle:" + urlTitle + Environment.NewLine;
@@ -88,13 +86,15 @@ namespace ytgenerator
 
         static void Main(string[] args)
         {
-            int thrCount = 4;      
+            int thrCount = 4;                  
             
             for(int i = 0; i < thrCount; i++)
             {                
                 Thread thr = new Thread(Search);
                 thr.Name = "thr" + i.ToString();
                 thr.Start();
+
+                Console.WriteLine("Starting thread: " + thr.Name);
             }
 
             Console.ReadKey();
